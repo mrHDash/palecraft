@@ -6,9 +6,11 @@ steps:
   - name: deploy
     image: alpine:latest
     commands: |
-      apk add --no-cache openssh-client curl zip
-
       export PACK_NAME="palecraft_$CI_COMMIT_BRANCH_$CI_COMMIT_SHA.zip"
+      export PACK_ENDPOINT="$FS_ENDPOINT/$PACK_NAME"
+      export PACK_HASH=`sha1sum $PACK_NAME | awk '{print $1}'`
+
+      apk add --no-cache openssh-client curl zip
 
       zip -r $PACK_NAME pack.mcmeta pack.png README.md LICENSE assets/
 
@@ -23,11 +25,7 @@ steps:
 
       scp -o StrictHostKeyChecking=no $PACK_NAME uncertainty@192.168.178.29:"$FS_COPY_TO/$PACK_NAME"
 
-      export PACK_ENDPOINT="$FS_ENDPOINT/$PACK_NAME"
-      export PACK_HASH=`sha1sum $PACK_NAME | awk '{print $1}'`
-
-      curl \
-        -X "POST" "$API_ENDPOINT/v1/server/properties?key=resource-pack-sha1&value=$PACK_HASH" \
+      curl -X "POST" "$API_ENDPOINT/v1/server/properties?key=resource-pack-sha1&value=$PACK_HASH" \
         -H "accept: application/json" \
         -H "Authorization: $API_AUTH" \
         -d ""
@@ -37,8 +35,7 @@ steps:
         exit 1
       fi
 
-      curl \
-        -X "POST" "$API_ENDPOINT/v1/server/properties?key=resource-pack&value=$PACK_ENDPOINT" \
+      curl -X "POST" "$API_ENDPOINT/v1/server/properties?key=resource-pack&value=$PACK_ENDPOINT" \
         -H "accept: application/json" \
         -H "Authorization: $API_AUTH" \
         -d ""
