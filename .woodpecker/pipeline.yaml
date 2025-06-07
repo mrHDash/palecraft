@@ -1,0 +1,60 @@
+when:
+  - event: push
+    branch: main
+
+steps:
+  - name: deploy
+    image: alpine:latest
+    commands: |
+      apk add --no-cache openssh-client curl zip
+
+      export PACK_NAME="palecraft_$CI_COMMIT_BRANCH_$CI_COMMIT_SHA.zip"
+
+      zip -r $PACK_NAME pack.mcmeta pack.png README.md LICENSE assets/
+
+      if [ ! -f "$PACK_NAME" ]; then
+        echo "Error: Failed to create zip package"
+        exit 1
+      fi
+
+      mkdir -p ~/.ssh
+      echo "$SSH_KEY" > ~/.ssh/id_rsa
+      chmod 600 ~/.ssh/id_rsa
+
+      scp -o StrictHostKeyChecking=no $PACK_NAME uncertainty@192.168.178.29:"$FS_COPY_TO/$PACK_NAME"
+
+      export PACK_ENDPOINT="$FS_ENDPOINT/$PACK_NAME"
+      export PACK_HASH=`sha1sum $PACK_NAME | awk '{print $1}'`
+
+      curl \
+        -X "POST" "$API_ENDPOINT/v1/server/properties?key=resource-pack-sha1&value=$PACK_HASH" \
+        -H "accept: application/json" \
+        -H "Authorization: $API_AUTH" \
+        -d ""
+
+      if [ $? -ne 0 ]; then
+        echo "Error: Failed to update resource-pack-sha1"
+        exit 1
+      fi
+
+      curl \
+        -X "POST" "$API_ENDPOINT/v1/server/properties?key=resource-pack&value=$PACK_ENDPOINT" \
+        -H "accept: application/json" \
+        -H "Authorization: $API_AUTH" \
+        -d ""
+
+      if [ $? -ne 0 ]; then
+        echo "Error: Failed to update resource-pack"
+        exit 1
+      fi
+
+      echo "Resource pack: $PACK_ENDPOINT"
+      echo "SHA1 hash: $PACK_HASH"
+    environment:
+      FS_COPY_TO: /home/uncertainty/www/explorer/palecraft
+      FS_ENDPOINT: https://fs.leggy.dev/palecraft
+      API_ENDPOINT: http://192.168.178.76:25566
+      SSH_KEY:
+        from_secret: ssh_key
+      API_AUTH:
+        from_secret: api_auth
