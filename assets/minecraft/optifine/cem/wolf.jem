@@ -6,20 +6,31 @@
 			"part": "head",
 			"id": "head",
 			"invertAxis": "xy",
-			"translate": [-1, -10.5, 7],
+			"translate": [-1, -11.5, 7],
 			"boxes": [
-				{"coordinates": [-3, 7.5, -9, 6, 6, 4], "textureOffset": [0, 0]},
-				{"coordinates": [-3, 13.5, -7, 2, 2, 1], "textureOffset": [16, 14]},
-				{"coordinates": [1, 13.5, -7, 2, 2, 1], "textureOffset": [16, 14]},
-				{"coordinates": [-1.5, 7.52, -12, 3, 3, 4], "textureOffset": [0, 10]}
+				{"coordinates": [-3, 8.5, -9, 6, 6, 4], "textureOffset": [0, 0]},
+				{"coordinates": [-3, 14.5, -7, 2, 2, 1], "textureOffset": [16, 14]},
+				{"coordinates": [1, 14.5, -7, 2, 2, 1], "textureOffset": [16, 14]},
+				{"coordinates": [-1.5, 8.52, -12, 3, 3, 4], "textureOffset": [0, 10]}
 			],
 			"submodels": [
 				{
 					"id": "bint4",
 					"invertAxis": "xy",
-					"translate": [0, 0, 0],
+					"translate": [0, 1, 0],
 					"boxes": [
 						{"coordinates": [-3.5, 6.52, -10, 7, 4, 0], "textureOffset": [1, 28]}
+					]
+				},
+				{
+					"id": "archie",
+					"invertAxis": "xy",
+					"translate": [1, 11.5, -7],
+					"boxes": [
+						{"coordinates": [-3.5, -3, -3, 5, 5, 4], "textureOffset": [83, 0]},
+						{"coordinates": [-4, 1.5, 0.1, 2, 3, 1], "textureOffset": [60, 0]},
+						{"coordinates": [0, 1.5, 0.1, 2, 3, 1], "textureOffset": [54, 0]},
+						{"coordinates": [-2, -2.5, -6, 2, 2, 3], "textureOffset": [56, 4]}
 					]
 				}
 			]
@@ -39,7 +50,16 @@
 					"invertAxis": "xy",
 					"translate": [0, 0, 0],
 					"boxes": [
-						{"coordinates": [-4, 7, -9, 8, 6, 10], "textureOffset": [64, 0], "sizeAdd": 0.25}
+						{"coordinates": [-4, 7, -9, 8, 6, 10], "textureOffset": [57, 0], "sizeAdd": 0.25}
+					]
+				},
+				{
+					"id": "archie2",
+					"invertAxis": "xy",
+					"translate": [1, 10, -3],
+					"boxes": [
+						{"coordinates": [-3, -3, -4, 4, 6, 7], "textureOffset": [95, 3]},
+						{"coordinates": [-3, -6.5, -4.5, 4, 6, 7], "textureOffset": [127, 0], "sizeAdd": 0.1}
 					]
 				}
 			],
@@ -60,18 +80,26 @@
 			],
 			"submodels": [
 				{
+					"id": "archei",
+					"invertAxis": "xy",
+					"translate": [0, 0, 0],
+					"boxes": [
+						{"coordinates": [-2, 3, -1, 4, 9, 6], "textureOffset": [101, 17]}
+					]
+				},
+				{
 					"id": "bint2",
 					"invertAxis": "xy",
 					"translate": [0, 0, 0],
 					"boxes": [
 						{
 							"coordinates": [-3, 3, -4, 6, 9, 9],
-							"uvNorth": [74, 18, 80, 27],
-							"uvEast": [65, 18, 74, 27],
-							"uvSouth": [89, 18, 95, 27],
-							"uvWest": [80, 18, 89, 27],
-							"uvUp": [101, 27, 95, 18],
-							"uvDown": [107, 18, 101, 27],
+							"uvNorth": [67, 18, 73, 27],
+							"uvEast": [58, 18, 67, 27],
+							"uvSouth": [82, 18, 88, 27],
+							"uvWest": [73, 18, 82, 27],
+							"uvUp": [94, 27, 88, 18],
+							"uvDown": [100, 18, 94, 27],
 							"sizeAdd": 0.25
 						}
 					]
@@ -99,6 +127,15 @@
 					"boxes": [
 						{"coordinates": [-2, 1, 8, 4, 11, 3], "textureOffset": [43, 14], "sizeAdd": 0.25}
 					]
+				},
+				{
+					"id": "archie5",
+					"invertAxis": "xy",
+					"translate": [1, 12, 10],
+					"boxes": [
+						{"coordinates": [-2, -3, -1, 2, 3, 2], "textureOffset": [20, 0]},
+						{"coordinates": [-1.5, -8, -0.5, 1, 5, 1], "textureOffset": [37, 13]}
+					]
 				}
 			]
 		},
@@ -109,6 +146,25 @@
 			"translate": [-2.5, -8, -7],
 			"boxes": [
 				{"coordinates": [0.5, 0, 6, 2, 8, 2], "textureOffset": [0, 18]}
+			],
+			"submodels": [
+				{
+					"id": "archie3",
+					"invertAxis": "xy",
+					"translate": [2.5, 8, 6],
+					"boxes": [
+						{"coordinates": [-1.5, -8, -0.1, 2, 6, 2], "textureOffset": [118, 8]},
+						{
+							"coordinates": [-2, -2, -2.1, 3, 6, 5],
+							"uvNorth": [119, 1, 116, 7],
+							"uvEast": [111, 1, 116, 7],
+							"uvSouth": [124, 1, 127, 7],
+							"uvWest": [119, 1, 124, 7],
+							"uvUp": [130, 6, 127, 1],
+							"uvDown": [133, 1, 130, 6]
+						}
+					]
+				}
 			]
 		},
 		{
@@ -118,6 +174,25 @@
 			"translate": [0.5, -8, -7],
 			"boxes": [
 				{"coordinates": [-2.5, 0, 6, 2, 8, 2], "textureOffset": [0, 18]}
+			],
+			"submodels": [
+				{
+					"id": "archie4",
+					"invertAxis": "xy",
+					"translate": [-0.5, 8, 6],
+					"boxes": [
+						{
+							"coordinates": [-3, -2, -2.1, 3, 6, 5],
+							"uvNorth": [116, 1, 119, 7],
+							"uvEast": [124, 1, 119, 7],
+							"uvSouth": [127, 1, 124, 7],
+							"uvWest": [116, 1, 111, 7],
+							"uvUp": [130, 6, 127, 1],
+							"uvDown": [133, 1, 130, 6]
+						},
+						{"coordinates": [-2.5, -8, -0.1, 2, 6, 2], "textureOffset": [118, 8]}
+					]
+				}
 			]
 		},
 		{
@@ -127,6 +202,16 @@
 			"translate": [-2.5, -8, 4],
 			"boxes": [
 				{"coordinates": [0.5, 0, -5, 2, 8, 2], "textureOffset": [0, 18]}
+			],
+			"submodels": [
+				{
+					"id": "archie7",
+					"invertAxis": "xy",
+					"translate": [2.5, 8, -4],
+					"boxes": [
+						{"coordinates": [-2, -8, -1, 2, 8, 2], "textureOffset": [122, 17]}
+					]
+				}
 			]
 		},
 		{
@@ -136,6 +221,16 @@
 			"translate": [0.5, -8, 4],
 			"boxes": [
 				{"coordinates": [-2.5, 0, -5, 2, 8, 2], "textureOffset": [0, 18]}
+			],
+			"submodels": [
+				{
+					"id": "archie6",
+					"invertAxis": "xy",
+					"translate": [0, 0, 0],
+					"boxes": [
+						{"coordinates": [-2.5, 0, -5, 2, 8, 2], "textureOffset": [122, 17]}
+					]
+				}
 			]
 		}
 	]
