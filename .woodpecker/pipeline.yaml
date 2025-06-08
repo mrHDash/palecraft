@@ -46,6 +46,29 @@ steps:
         exit 1
       fi
 
+      export WEBHOOK_BODY='{
+        "content": null,
+        "embeds": [
+          {
+            "title": "Palecraft CI",
+            "description": "A new version of the resource pack has been pushed! Waiting for a moderator to restart the server...",
+            "color": 16671260,
+            "fields": [
+              {
+                "name": "Links",
+                "value": "[Artifact]('$PACK_ENDPOINT')\n[Storage]('$FS_ENDPOINT')"
+              }
+            ]
+          }
+        ],
+        "attachments": []
+      }'
+
+      curl -X "POST" "$WEBHOOK_URL" \
+        -H "Content-Type: application/json" \
+        -H "accept: application/json" \
+        -d "$WEBHOOK_BODY"
+
       echo "Resource pack: $PACK_ENDPOINT"
       echo "SHA1 hash: $PACK_HASH"
     environment:
@@ -56,3 +79,5 @@ steps:
         from_secret: ssh_key
       API_AUTH:
         from_secret: api_auth
+      WEBHOOK_URL:
+        from_secret: webhook_url
